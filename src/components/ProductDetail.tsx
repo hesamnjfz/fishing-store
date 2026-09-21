@@ -82,9 +82,8 @@ export function ProductDetail({ p }: { p: Product }) {
             </dl>
 
             <div className="mt-8 rounded-2xl border border-ink-100 bg-white p-4 shadow-sm sm:p-5">
-              <div className="flex flex-wrap items-end justify-between gap-4">
+              <div className="flex flex-wrap items-end justify-center gap-4 text-center sm:justify-between sm:text-start">
                 <div>
-                  {p.oldPrice && !out && <div className="text-sm font-bold text-ink-400 line-through">{fmt(p.oldPrice)} تومان</div>}
                   <div className="font-display text-2xl font-semibold tabular-nums tracking-wide text-ink-900" dir="ltr">{fmtUsd(p.price)}</div>
                   <div className="mt-1 text-lg font-black tabular-nums text-ink-700">{fmt(p.price)} <span className="text-sm font-bold text-ink-500">تومان</span></div>
                   <div className="mt-1 text-xs font-black">
@@ -97,17 +96,17 @@ export function ProductDetail({ p }: { p: Product }) {
                   type="button"
                   onClick={() => toggleWish(p.id)}
                   aria-pressed={liked}
+                  aria-label={liked ? "حذف از ذخیره شده‌ها" : "افزودن به ذخیره شده‌ها"}
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-black transition",
+                    "inline-flex h-11 w-11 items-center justify-center rounded-xl border transition",
                     liked ? "border-alert bg-alert-50 text-alert" : "border-ink-200 text-ink-600 hover:border-ink-400 hover:text-ink-900",
                   )}
                 >
-                  <BookmarkIcon className="h-4 w-4" active={liked} />
-                  ذخیره شده‌ها
+                  <BookmarkIcon className="h-5 w-5" active={liked} />
                 </button>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
                 {line ? (
                   <div className="flex items-center rounded-xl bg-ink-50 ring-1 ring-ink-200">
                     <button type="button" onClick={() => setQty(p.id, line.qty + 1)} aria-label="افزایش" className="grid h-12 w-12 place-items-center text-ink-700 hover:text-brand-600"><Plus className="h-4 w-4" /></button>
@@ -115,17 +114,17 @@ export function ProductDetail({ p }: { p: Product }) {
                     <button type="button" onClick={() => setQty(p.id, line.qty - 1)} aria-label="کاهش" className="grid h-12 w-12 place-items-center text-ink-700 hover:text-alert"><Minus className="h-4 w-4" /></button>
                   </div>
                 ) : (
-                  <button type="button" onClick={() => addToCart(p.id)} disabled={out} className="btn-brand flex-1 !py-3.5 !text-base sm:flex-none sm:min-w-[14rem]">
+                  <button type="button" onClick={() => addToCart(p.id)} disabled={out} className="btn-brand w-full !py-3.5 !text-base sm:w-auto sm:min-w-[14rem]">
                     {out ? "به من خبر بده" : <><Plus className="h-5 w-5" />افزودن به سبد</>}
                   </button>
                 )}
-                <Link href="/cart" className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-alert/50 bg-alert-50 px-5 py-3.5 text-sm font-black text-alert transition hover:bg-alert hover:text-white sm:flex-none">
+                <Link href="/cart" className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-alert/50 bg-alert-50 px-5 py-3.5 text-sm font-black text-alert transition hover:bg-alert hover:text-white sm:w-auto">
                   سبد خرید
                   <ArrowLeft className="h-4 w-4" />
                 </Link>
               </div>
 
-              <p className="mt-4 flex items-start gap-2 text-xs font-bold leading-5 text-ink-500">
+              <p className="mt-4 flex items-start justify-center gap-2 text-center text-xs font-bold leading-5 text-ink-500 sm:justify-start sm:text-start">
                 <Truck className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
                 هزینه ارسال در تسویه‌حساب بر اساس پست یا تیپاکس محاسبه می‌شود.
               </p>
