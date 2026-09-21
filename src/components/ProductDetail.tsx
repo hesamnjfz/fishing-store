@@ -82,28 +82,14 @@ export function ProductDetail({ p }: { p: Product }) {
             </dl>
 
             <div className="mt-8 rounded-2xl border border-ink-100 bg-white p-4 shadow-sm sm:p-5">
-              <div className="flex flex-wrap items-end justify-center gap-4 text-center sm:justify-between sm:text-start">
-                <div>
-                  <div className="font-display text-2xl font-semibold tabular-nums tracking-wide text-ink-900" dir="ltr">{fmtUsd(p.price)}</div>
-                  <div className="mt-1 text-lg font-black tabular-nums text-ink-700">{fmt(p.price)} <span className="text-sm font-bold text-ink-500">تومان</span></div>
-                  <div className="mt-1 text-xs font-black">
-                    {out && <span className="text-ink-400">ناموجود</span>}
-                    {low && <span className="text-alert">فقط {toFa(p.stock)} عدد در انبار</span>}
-                    {!out && !low && <span className="text-brand-600">موجود در انبار</span>}
-                  </div>
+              <div className="text-center sm:text-start">
+                <div className="font-display text-2xl font-semibold tabular-nums tracking-wide text-ink-900" dir="ltr">{fmtUsd(p.price)}</div>
+                <div className="mt-1 text-lg font-black tabular-nums text-ink-700">{fmt(p.price)} <span className="text-sm font-bold text-ink-500">تومان</span></div>
+                <div className="mt-1 text-xs font-black">
+                  {out && <span className="text-ink-400">ناموجود</span>}
+                  {low && <span className="text-alert">فقط {toFa(p.stock)} عدد در انبار</span>}
+                  {!out && !low && <span className="text-brand-600">موجود در انبار</span>}
                 </div>
-                <button
-                  type="button"
-                  onClick={() => toggleWish(p.id)}
-                  aria-pressed={liked}
-                  aria-label={liked ? "حذف از ذخیره شده‌ها" : "افزودن به ذخیره شده‌ها"}
-                  className={cn(
-                    "inline-flex h-11 w-11 items-center justify-center rounded-xl border transition",
-                    liked ? "border-alert bg-alert-50 text-alert" : "border-ink-200 text-ink-600 hover:border-ink-400 hover:text-ink-900",
-                  )}
-                >
-                  <BookmarkIcon className="h-5 w-5" active={liked} />
-                </button>
               </div>
 
               <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
@@ -128,6 +114,21 @@ export function ProductDetail({ p }: { p: Product }) {
                 <Truck className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
                 هزینه ارسال در تسویه‌حساب بر اساس پست یا تیپاکس محاسبه می‌شود.
               </p>
+
+              <div className="mt-4 flex justify-center border-t border-ink-100 pt-4 sm:justify-end">
+                <button
+                  type="button"
+                  onClick={() => toggleWish(p.id)}
+                  aria-pressed={liked}
+                  aria-label={liked ? "حذف از ذخیره شده‌ها" : "افزودن به ذخیره شده‌ها"}
+                  className={cn(
+                    "inline-flex h-11 w-11 items-center justify-center rounded-xl border transition",
+                    liked ? "border-alert bg-alert-50 text-alert" : "border-ink-200 text-ink-600 hover:border-ink-400 hover:text-ink-900",
+                  )}
+                >
+                  <BookmarkIcon className="h-5 w-5" active={liked} />
+                </button>
+              </div>
             </div>
           </div>
         </div>
